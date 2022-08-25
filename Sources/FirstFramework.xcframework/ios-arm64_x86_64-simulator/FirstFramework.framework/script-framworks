@@ -1,0 +1,85 @@
+##Create a xcarchive
+
+xcodebuild archive \
+-scheme FirstFramework \
+-configuration Release \
+-destination 'generic/platform=iOS' \
+-archivePath '/Users/tomasimoyano/Desktop/SDK-trial/Framework/FirstFramework/build/FirstFramework.framework-iphoneos.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+##Create a xcarchive con workspace para Simulator
+
+xcodebuild archive \
+-workspace 'FirstFramework.xcworkspace' \
+-scheme FirstFramework \
+-configuration Release \
+-destination 'generic/platform=iOS Simulator' \
+-archivePath '/Users/tomasimoyano/Desktop/SDK-trial/Framework/FirstFramework/build/FirstFramework.framework-iphoneosimulator.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+##Create a xcarchive con workspace para iPhone
+
+xcodebuild archive \
+-workspace 'FirstFramework.xcworkspace' \
+-scheme FirstFramework \
+-configuration Release \
+-destination 'generic/platform=iOS' \
+-archivePath '/Users/tomasimoyano/Desktop/SDK-trial/Framework/FirstFramework/build/FirstFramework.framework-iphoneos.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+
+##Create a framework from an xcarchive
+
+xcodebuild -create-xcframework \
+-framework './build/FirstFramework.framework-iphoneos.xcarchive/Products/Library/Frameworks/FirstFramework.framework' \
+-framework './build/FirstFramework.framework-iphoneosimulator.xcarchive/Products/Library/Frameworks/FirstFramework.framework' \
+-output './build/FirstFramework.xcframework'
+
+
+
+##Create a xcarchive con workspace para iPhone and Simulator + Create Framework
+
+xcodebuild archive \
+-workspace 'FirstFramework.xcworkspace' \
+-scheme FirstFramework \
+-configuration Release \
+-destination 'generic/platform=iOS Simulator' \
+-archivePath '/Users/tomasimoyano/Desktop/SDK-trial/Framework/FirstFramework/build/FirstFramework.framework-iphoneosimulator.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+xcodebuild archive \
+-workspace 'FirstFramework.xcworkspace' \
+-scheme FirstFramework \
+-configuration Release \
+-destination 'generic/platform=iOS' \
+-archivePath '/Users/tomasimoyano/Desktop/SDK-trial/Framework/FirstFramework/build/FirstFramework.framework-iphoneos.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+xcodebuild -create-xcframework \
+-framework './build/FirstFramework.framework-iphoneos.xcarchive/Products/Library/Frameworks/FirstFramework.framework' \
+-framework './build/FirstFramework.framework-iphoneosimulator.xcarchive/Products/Library/Frameworks/FirstFramework.framework' \
+-output './build/FirstFramework.xcframework'
+
+
+##Create a xcarchive sin workspace para iPhone and Simulator + Create Framework
+
+xcodebuild archive \
+-scheme FirstFramework \
+-configuration Release \
+-destination 'generic/platform=iOS Simulator' \
+-archivePath '/Users/tomasimoyano/Desktop/SDK-trial/Framework/FirstFramework/build/FirstFramework.framework-iphoneosimulator.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+xcodebuild archive \
+-scheme FirstFramework \
+-configuration Release \
+-destination 'generic/platform=iOS' \
+-archivePath '/Users/tomasimoyano/Desktop/SDK-trial/Framework/FirstFramework/build/FirstFramework.framework-iphoneos.xcarchive' \
+SKIP_INSTALL=NO \
+BUILD_LIBRARY_FOR_DISTRIBUTION=YES
+xcodebuild -create-xcframework \
+-framework './build/FirstFramework.framework-iphoneos.xcarchive/Products/Library/Frameworks/FirstFramework.framework' \
+-framework './build/FirstFramework.framework-iphoneosimulator.xcarchive/Products/Library/Frameworks/FirstFramework.framework' \
+-output './build/FirstFramework.xcframework'
